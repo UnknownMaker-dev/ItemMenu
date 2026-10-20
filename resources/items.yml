@@ -1,0 +1,78 @@
+# Itens de menu do ItemMenu.
+#
+# Cada entrada dentro de "items" é um item. O nome da entrada é o id do item
+# (letras minúsculas, números, "_" ou "-"; até 32 caracteres) e é usado em /itemmenu give.
+#
+# Chaves de cada item:
+#   item:        (obrigatória) tipo do item: "compass", "minecraft:clock", "nether_star"...
+#                Itens customizados do servidor também servem (ex.: "meupack:menu").
+#   name:        nome exibido (cores com &). Opcional.
+#   lore:        linhas de descrição (lista). Opcional.
+#   fixed:       true = item fixo: é entregue no "slot" ao entrar e ao renascer, não pode ser
+#                movido nem dropado e não cai ao morrer. false (padrão) = item comum, entregue
+#                só por /itemmenu give, que o jogador pode mover e dropar.
+#   slot:        slot do inventário de 1 a 36 (1 a 9 = hotbar). Obrigatório se fixed: true.
+#                Em itens não fixos é só o slot preferido ao entregar (se estiver vazio).
+#   worlds:      mundos (nome da pasta) onde o item funciona. Lista vazia = todos os mundos.
+#   cooldown:    segundos de espera entre usos do item, por jogador (0 = sem espera).
+#   permission:  permissão necessária para usar o item. Opcional. Ninguém tem uma
+#                permissão nova por padrão (nem OP): conceda com seu plugin de permissões.
+#   run-as:      quem executa os comandos sem prefixo: "player" (o próprio jogador, com as
+#                permissões dele) ou "console". Padrão: player.
+#   commands:    comandos executados ao usar o item (sem a "/"). Cada comando pode começar
+#                com "player:" ou "console:" para escolher quem o executa, ignorando o run-as.
+#                {player} é trocado pelo nome de quem usou o item.
+#
+# O item funciona clicando no ar ou em um bloco. A ação normal do item (comer, lançar,
+# colocar bloco...) é sempre cancelada. Somente os itens criados por este plugin são
+# reconhecidos: uma bússola comum continua sendo uma bússola comum.
+#
+# Entradas inválidas (item desconhecido, slot fora de 1 a 36, slot repetido entre itens
+# fixos...) são ignoradas com um aviso no console; as demais continuam funcionando.
+
+items:
+  # Bússola fixa no primeiro slot da hotbar que abre o menu do servidor.
+  # Troque "menu" pelo comando do seu plugin de menus.
+  menu:
+    item: compass
+    name: "&r&bMenu do servidor &7(clique)"
+    lore:
+      - "&7Clique com o item na mão"
+      - "&7para abrir o menu."
+    fixed: true
+    slot: 1
+    worlds: []
+    cooldown: 1
+    run-as: player
+    commands:
+      - "menu"
+
+  # Relógio fixo no último slot da hotbar, com um comando do console e um do jogador.
+  info:
+    item: clock
+    name: "&r&eInformações"
+    lore:
+      - "&7Mostra quem está online."
+    fixed: true
+    slot: 9
+    worlds: []
+    cooldown: 3
+    run-as: console
+    commands:
+      - "tell {player} Olá, {player}! Estes são os jogadores online:"
+      - "player: list"
+
+  # Item não fixo, entregue com /itemmenu give <jogador> velocidade.
+  # Só funciona no mundo "world" e tem 30 segundos de espera.
+  velocidade:
+    item: feather
+    name: "&r&fPena da velocidade"
+    lore:
+      - "&7Dá velocidade por 10 segundos."
+    fixed: false
+    worlds:
+      - world
+    cooldown: 30
+    run-as: console
+    commands:
+      - "effect {player} speed 10 1"

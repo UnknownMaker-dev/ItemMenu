@@ -1,0 +1,29 @@
+# Configurações gerais do ItemMenu.
+# Os itens de menu ficam em items.yml. Depois de editar, use /itemmenu reload.
+
+# Prefixo das mensagens do plugin. Aceita cores com & (ex.: &a) ou §.
+prefix: "&8[&bItemMenu&8]&r "
+
+# Intervalo mínimo, em segundos, entre dois usos de itens de menu pelo mesmo jogador.
+# Um único toque pode chegar ao servidor como "clique no bloco" e "clique no ar" ao mesmo
+# tempo; este intervalo impede que os comandos rodem duas vezes. Valor de 0 a 5.
+anti-double-click: 0.4
+
+# Atraso, em ticks (20 ticks = 1 segundo), para entregar os itens fixos depois que o
+# jogador entra no servidor ou renasce. Evita conflito com plugins que mexem no inventário
+# nesses momentos. Valor de 0 a 200.
+give-delay-ticks: 5
+
+# Remove do inventário os itens criados por este plugin cujo id não existe mais no
+# items.yml (por exemplo, depois de apagar uma entrada). Itens comuns nunca são afetados.
+remove-unknown-items: true
+
+# Mensagens enviadas aos jogadores. Deixe "" para não enviar a mensagem.
+# Variáveis: {time} = tempo restante, {slot} = número do slot, {world} = mundo atual.
+messages:
+  world-disabled: "&cEste item não pode ser usado no mundo &f{world}&c."
+  cooldown: "&cAguarde &f{time} &cpara usar este item de novo."
+  no-permission: "&cVocê não tem permissão para usar este item."
+  locked: "&cEste item é fixo: não pode ser movido nem dropado."
+  slot-moved: "&eO item que estava no slot &f{slot} &efoi movido para outro espaço do inventário."
+  slot-dropped: "&eSeu inventário estava cheio: o item que estava no slot &f{slot} &efoi dropado no chão."

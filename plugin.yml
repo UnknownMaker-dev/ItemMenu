@@ -1,0 +1,22 @@
+name: ItemMenu
+main: Unknown\ItemMenu\ItemMenu
+version: 1.0.0
+api: 5.0.0
+author: UnknownMaker-dev
+src-namespace-prefix: Unknown\ItemMenu
+depend: [Forja]
+description: Itens de menu na hotbar que executam comandos ao serem usados, com slots fixos e travados.
+
+permissions:
+  itemmenu.command.reload:
+    description: "Usar /itemmenu reload"
+    default: op
+  itemmenu.command.give:
+    description: "Usar /itemmenu give"
+    default: op
+  itemmenu.command.list:
+    description: "Usar /itemmenu list"
+    default: op
+  itemmenu.bypass.cooldown:
+    description: "Ignorar o tempo de espera dos itens de menu"
+    default: op
